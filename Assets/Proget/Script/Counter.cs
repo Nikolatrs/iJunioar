@@ -26,14 +26,14 @@ public class Counter : MonoBehaviour
 
     private IEnumerator ControlCounter(float delay)
     {
-
+        var wait = new WaitForSecondsRealtime(delay);
         while (_count < 99999)
         {
             if (_isCountTrigger)
             {
                 _count += 1;
                 TriggerChenged?.Invoke(_count);
-                yield return new WaitForSecondsRealtime(delay);
+                yield return wait;
             }
             else
             {
