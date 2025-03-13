@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private float _delay = 0.1f;
+    [SerializeField] private float _delay;
 
     private bool _isCountTrigger = true;
     private int _count = 0;
