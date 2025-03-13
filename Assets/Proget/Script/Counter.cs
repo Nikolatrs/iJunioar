@@ -4,41 +4,45 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private float _delay = 0.5f;
-    
+    [SerializeField] private float _delay = 0.1f;
+
     private bool _isCountTrigger = true;
     private int _count = 0;
+    private Coroutine _magnifier;
 
-    public event Action<int> TriggerChenged;
+    public event Action<int> Chenged;
 
-    private void Start()
-    {
-        StartCoroutine(ControlCounter(_delay));
-    }
+    private void Start() => Restart();
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             _isCountTrigger = !_isCountTrigger;
-        }
-    }
 
-    private IEnumerator ControlCounter(float delay)
-    {
-        var wait = new WaitForSecondsRealtime(delay);
-        while (_count < 99999)
-        {
             if (_isCountTrigger)
             {
-                _count += 1;
-                TriggerChenged?.Invoke(_count);
-                yield return wait;
+                Restart();
             }
             else
             {
-                yield return null;
+                StopCoroutine(_magnifier);
             }
+        }
+    }
+
+    public void Restart() => _magnifier = StartCoroutine(MagnifCount(_delay));
+
+    private IEnumerator MagnifCount(float delay)
+    {
+        var wait = new WaitForSecondsRealtime(delay);
+
+        while (true)
+        {
+            _count += 1;
+            Chenged?.Invoke(_count);
+            yield return wait;
+
         }
     }
 }

@@ -6,18 +6,9 @@ public class CounterViver : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _textCounter;
     [SerializeField] private Counter _counter;
 
-    private void OnEnable()
-    {
-        _counter.TriggerChenged += CengeTrigger;
-    }
+    private void OnEnable() => _counter.Chenged += ChengeTrigger;
 
-    private void OnDisable()
-    {
-        _counter.TriggerChenged -= CengeTrigger;
-    }
+    private void OnDisable() => _counter.Chenged -= ChengeTrigger;
 
-    private void CengeTrigger(int count)
-    {
-        _textCounter.text = count.ToString("");
-    }
+    private void ChengeTrigger(int count) => _textCounter.text = count.ToString("");
 }
