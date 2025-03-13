@@ -31,7 +31,7 @@ public class Counter : MonoBehaviour
         }
     }
 
-    public void Restart() => _magnifier = StartCoroutine(MagnifCount(_delay));
+    private void Restart() => _magnifier = StartCoroutine(MagnifCount(_delay));
 
     private IEnumerator MagnifCount(float delay)
     {
