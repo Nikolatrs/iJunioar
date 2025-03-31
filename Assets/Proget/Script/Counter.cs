@@ -1,6 +1,7 @@
 using System.Collections;
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Counter : MonoBehaviour
 {
@@ -31,9 +32,9 @@ public class Counter : MonoBehaviour
         }
     }
 
-    private void Restart() => _magnifier = StartCoroutine(MagnifCount(_delay));
+    private void Restart() => _magnifier = StartCoroutine(MagnifyCount(_delay));
 
-    private IEnumerator MagnifCount(float delay)
+    private IEnumerator MagnifyCount(float delay)
     {
         var wait = new WaitForSecondsRealtime(delay);
 
